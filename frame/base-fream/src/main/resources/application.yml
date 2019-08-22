@@ -1,0 +1,66 @@
+spring:
+    application:
+        name: base-fream
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    datasource:
+        name: system
+        url: jdbc:mysql://${MYSQL_HOST:132.232.0.74}:${MYSQL_PORT:3306}/fireim?useUnicode=true&characterEncoding=UTF8
+        username: test002
+        password: test002
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        password: fireim
+        jedis:
+            pool:
+                max-active: 20
+                max-idle: 50
+                max-wait: 5000ms
+                min-idle: 100
+mybatis:
+      mapper-locations: classpath:mapper/*.xml
+      configuration:
+          mapUnderscoreToCamelCase: true
+server:
+      port: 8080
+logging:
+      config: classpath:log4j.properties
+      level:
+        cn.base.framework.api.dao: debug
+
+#框架基础配置
+frame:
+      base:
+          #保存日志到数据库
+          save-log: true
+          #控制台打印请求日志
+          print-log: true
+          #缓存超时时间 -分钟
+          caches-time-out: 30
+          #缓存长度
+          token-length: 38
+      swagger:      #多api目录采用,分开
+          apis: cn.fireim.base.framework.api.controller
+          tittle: 测试接口文档
+          description: 测试接口文档
+          termsOfServiceUrl: http://www.baidu.com
+          version: 1.0.0

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fireim.base.framework.api.dao.LogMapper">
+
+    <parameterMap id="BaseParameterMap" type="cn.fireim.base.framework.api.enitity.log.Log">
+    </parameterMap>
+
+    <insert id="saveLog">
+        INSERT INTO system_log(id,handle_user_id,handle_user_name,handle_name,handle_value,handle_date_time,handle_moudle,resource_path,handle_ip,handle_type)values(
+        #{id},#{handleUserId},#{handleUserName},#{handleName},#{handleValue},#{handleDateTime},#{handleMoudle},#{resourcePath},#{handleIp},#{handleType}
+        )
+    </insert>
+</mapper>
